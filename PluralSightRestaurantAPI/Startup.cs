@@ -48,16 +48,13 @@ namespace PluralSightRestaurantAPI
                     }
                 };
             });
-
-
-            //app.UseDefaultFiles();
-
-
+            
+            app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            //app.UseMvcWithDefaultRoute();
-
             app.UseMvcWithDefaultRoute();
+
+            //app.UseMvcWithDefaultRoute();
 
 
             app.Run(async (context) =>
@@ -66,8 +63,8 @@ namespace PluralSightRestaurantAPI
                 //string greetingText = configuration["greeting"];
                 string greetingText = greeter.GetMessageOfTheDay(); 
                 //await context.Response.WriteAsync(configuration.GetValue<string>("Greeting"));
-                //await context.Response.WriteAsync($"{greetingText} : {env.EnvironmentName}");
-                await 
+                await context.Response.WriteAsync($"{greetingText} : {env.EnvironmentName}");
+                
             });
         }
     }
