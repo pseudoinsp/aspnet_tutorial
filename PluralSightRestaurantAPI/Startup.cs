@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,8 +30,6 @@ namespace PluralSightRestaurantAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.UseWelcomePage(new WelcomePageOptions() { Path="/wp" });
-
             app.Use(next =>
             {
                 return async context =>
@@ -49,22 +48,17 @@ namespace PluralSightRestaurantAPI
                 };
             });
             
-            app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
-
-            //app.UseMvcWithDefaultRoute();
-
+            app.UseMvc(routeBuilder =>
+            {
+                routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+            });
 
             app.Run(async (context) =>
             {
-
-                //string greetingText = configuration["greeting"];
-                string greetingText = greeter.GetMessageOfTheDay(); 
-                //await context.Response.WriteAsync(configuration.GetValue<string>("Greeting"));
-                await context.Response.WriteAsync($"{greetingText} : {env.EnvironmentName}");
-                
+                context.Response.ContentType = "text/plain";
+                await context.Response.WriteAsync($"Not found");
             });
         }
     }
