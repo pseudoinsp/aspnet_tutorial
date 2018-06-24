@@ -1,15 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using PluralSightRestaurantAPI.Models;
+using PluralSightRestaurantAPI.Services;
 
 namespace PluralSightRestaurantAPI.Controllers
 {
-    public class HomeController
+    public class HomeController : Controller
     {
-        public string Index()
+        public HomeController(IRestaurantData restaurantData)
         {
-            return "Hello From the HomeContoller";
+            _restaurantData = restaurantData;
         }
+
+        public IActionResult Index()
+        {
+            var model = _restaurantData.GetAll();
+
+            return View(model);
+        }
+
+        private IRestaurantData _restaurantData;
     }
 }

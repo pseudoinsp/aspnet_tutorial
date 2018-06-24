@@ -4,7 +4,7 @@ namespace PluralSightRestaurantAPI.Controllers
 {
     //   [controller] == "about"
     [Route("company/[controller]/[action]")]
-    public class AboutController
+    public class AboutController : Controller
     {
         [Route("")]
         public string Phone()

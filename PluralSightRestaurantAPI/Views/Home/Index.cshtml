@@ -1,0 +1,22 @@
+﻿@model IEnumerable<PluralSightRestaurantAPI.Models.Restaurant>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    
+    <table>
+        @foreach (var resturant in Model)
+        {
+            <tr>
+                <td>@resturant.Id</td>
+                <td>@resturant.Name</td> 
+            </tr>
+        }
+
+    </table>
+
+    <div></div>
+</body>
+</html>

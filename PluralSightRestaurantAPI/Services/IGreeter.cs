@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace PluralSightRestaurantAPI
+namespace PluralSightRestaurantAPI.Services
 {
     public interface IGreeter
     {
