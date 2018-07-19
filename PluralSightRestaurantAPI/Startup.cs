@@ -81,18 +81,29 @@ namespace PluralSightRestaurantAPI
             
             app.UseStaticFiles();
 
+            app.UseNodeModules(env.ContentRootPath);
+
             app.UseAuthentication();
 
-            app.UseMvc(routeBuilder =>
-            {
-                routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc(ConfigureRoutes);
 
-            app.Run(async (context) =>
-            {
-                context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync($"Not found");
-            });
+            //app.UseMvc(routeBuilder =>
+            //{
+            //    routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+            //});
+
+
+
+            //app.Run(async (context) =>
+            //{
+            //    context.Response.ContentType = "text/plain";
+            //    await context.Response.WriteAsync($"Not found");
+            //});
+        }
+
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
         }
     }
 }

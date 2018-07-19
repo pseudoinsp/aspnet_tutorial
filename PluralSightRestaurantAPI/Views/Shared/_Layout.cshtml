@@ -4,34 +4,38 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">RestaurantAPI</a>
+            </div>
+            <div class="navbar-right">
+            </div>
+        </div>
+    </nav>
+    <div class="container">
         @RenderBody()
+        <footer>
+            @RenderSection("footer", required: false)
+        </footer>
     </div>
-    <footer>
-        @RenderSection("footer", required:false)
-        @*@await Component.InvokeAsync("Greeter")*@
-        <vc:greeter ></vc:greeter>
-        @if(User.Identity.IsAuthenticated)
-        {
-            foreach (var identity in User.Identities)
-            {
-                <h3>@identity.Name</h3>
-                <ul>
-                    @foreach (var claim in identity.Claims)
-                    {
-                        <li>@claim.Type - @claim.Value</li>
-                    }
-
-                </ul>
-            }
-        }
-        else
-        {
-            <div>You are anonymus</div>
-
-        }
-    </footer>
+    <environment include="Development">
+        <script src="~/node_modules/jquery/dist/jquery.js"></script>
+        <script src="~/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    </environment>
+    <environment exclude="Development">
+        @* cdn as first, local as fallback *@
+        @*<script src="cdn"
+                asp-fallback-src="local"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anyonymus"
+                integrity="..."
+                >
+        </script>*@
+    </environment>    
 </body>
 </html>
