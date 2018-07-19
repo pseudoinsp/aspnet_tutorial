@@ -37,6 +37,13 @@ namespace PluralSightRestaurantAPI.Services
             return restaurant;
         }
 
+        public Restaurant Update(Restaurant restaurant)
+        {
+            _restaurants.RemoveAll(r => r.Id == restaurant.Id);
+            _restaurants.Add(restaurant);
+            return restaurant;
+        }
+
         List<Restaurant> _restaurants;
     }
 }

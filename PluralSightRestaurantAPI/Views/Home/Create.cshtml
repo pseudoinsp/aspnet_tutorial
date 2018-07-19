@@ -14,7 +14,7 @@
         <span asp-validation-for="Name" ></span>
     </div>
     <div>
-        <label asp-for="Name"></label>
+        <label asp-for="Cuisine"></label>
         <select asp-for="Cuisine" asp-items="@Html.GetEnumSelectList<CuisineType>()"></select>
         <span asp-validation-for="Cuisine"></span>
     </div>

@@ -1,9 +1,24 @@
 ﻿@page "{name}"
-
 @*@inject IGreeter Greeter*@
 @model GreetingModel
 
 <div>@Model.CurrentGreeting</div>
 
+<h1>All Restaurants</h1>
+<table>
+    @foreach (var resturant in Model.Restaurants)
+    {
+        <tr>
+            <td>@resturant.Id</td>
+            <td>@resturant.Name</td>
+            <td>
+                <a href="/home/details/@resturant.Id">Details</a>
+                @Html.ActionLink("Go", "Details", "Home", new { id = resturant.Id })
+                <a asp-action="Details" asp-route-id="@resturant.Id">More</a>
+            </td>
+        </tr>
+    }
+</table>
+
 @*<div>@Greeter.GetMessageOfTheDay()</div>
-<div>@DateTime.Now.Year</div>*@
+    <div>@DateTime.Now.Year</div>*@
