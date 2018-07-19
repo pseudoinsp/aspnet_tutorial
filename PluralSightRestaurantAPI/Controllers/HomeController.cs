@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PluralSightRestaurantAPI.Models;
 using PluralSightRestaurantAPI.Services;
 using PluralSightRestaurantAPI.ViewModels;
 
 namespace PluralSightRestaurantAPI.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public HomeController(IRestaurantData restaurantData, IGreeter greeter)
@@ -13,6 +15,7 @@ namespace PluralSightRestaurantAPI.Controllers
             _greeter = greeter;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var model = new HomeIndexViewModel();
